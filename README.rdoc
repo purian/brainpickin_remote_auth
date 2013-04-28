@@ -1,0 +1,77 @@
+= brainpickin_remote_auth
+
+brainpickin_remote_auth is a simple gem providing help with brainpickin's Single Sign On
+functionality (see https://my.brainpickin.com/api/remote_authentication).
+
+== Installation and Setup
+
+* Install:
+  gem install brainpickin_remote_auth
+
+* Setup:
+You will need to give the gem your token and authentication url,
+perhaps in an initializer:
+  Brainpickin::RemoteAuth.token = 'OUR-SECRET-TOKEN'
+  Brainpickin::RemoteAuth.auth_url = 'https://yoursubdomain.brainpickin.com/access/remote/'
+
+
+== Usage
+
+Mixin the Brainpickin::RemoteAuthHelper module wherever needed, then call:
+  brainpickin_remote_auth_url(:name => 'user name',
+                          :email => 'user email',
+                          <optional params>)
+
+This will return a url you can redirect the user to to log them in to
+your brainpickin account.
+
+As a convenience, you can pass a user object to brainpickin_remote_auth_url:
+  brainpickin_remote_auth_url(user)
+
+This user must respond_to? :name and :email, and its :id will be used
+as the :external_id (making it useless with user objects that return
+an ephemeral object_id, but works well with ActiveRecord and the
+like).
+
+This method will generate and include the hash of the parameters for
+you if necessary. 
+
+== Example Auth Controller
+
+Here is an example controller that handles login and logout for
+brainpickin:
+
+  # Uses restful-authentication style auth. 
+  # 
+  # Define the following in routes.rb:
+
+  #  match 'services/brainpickin_auth' => 'services#brainpickin_auth'
+  #  match 'services/brainpickin_logout' => 'services#brainpickin_logout'
+
+  class brainpickinAuthController < ApplicationController
+    include Brainpickin::RemoteAuthHelper
+  
+    skip_before_filter :login_required, :only => :logout
+  
+    def brainpickin_auth
+      redirect_to brainpickin_remote_auth_url(current_user)
+    end
+
+    def brainpickin_logout
+      redirect_to logout_url
+    end
+
+    protected
+    def login_required
+      if !logged_in?
+        flash[:notice] = 'You must log in to access to brainpickin site.'
+        store_location
+        redirect_to login_path
+      end
+    end
+  end
+
+
+== Copyright
+
+Copyright (c) 2013 brainpickin. See LICENSE for details.
