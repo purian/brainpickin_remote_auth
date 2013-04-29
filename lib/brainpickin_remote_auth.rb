@@ -67,7 +67,8 @@ module Brainpickin
     end
     
     def generate_hash(token, params)
-      str_to_hash = params[:name]
+      str_to_hash = []
+      str_to_hash << params[:name]
       str_to_hash << params[:email]
       str_to_hash << params[:external_id]
       str_to_hash << params[:interests]
