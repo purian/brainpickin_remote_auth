@@ -67,14 +67,15 @@ module Brainpickin
     end
     
     def generate_hash(token, params)
-      str_to_hash = params[:name].clone
+      str_to_hash = params[:name]
       str_to_hash << params[:email]
-      str_to_hash << params[:external_id].to_s if params[:external_id]
-      str_to_hash << params[:interests].to_s if params[:interests]
-      str_to_hash << params[:remote_photo_url].to_s if params[:remote_photo_url]
+      str_to_hash << params[:external_id]
+      str_to_hash << params[:interests]
+      str_to_hash << params[:remote_photo_url]
       str_to_hash << token
-      str_to_hash << params[:timestamp].to_s
-      Digest::MD5.hexdigest(str_to_hash)
+      str_to_hash << params[:timestamp]
+      input = str_to_hash.join("|")
+      Digest::MD5.hexdigest(input)
     end
 
   end

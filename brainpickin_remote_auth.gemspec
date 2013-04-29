@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "brainpickin_remote_auth"
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Eli Purian"]
-  s.date = "2013-04-28"
+  s.date = "2013-04-29"
   s.description = "See the README."
   s.email = "eli@brainpickin.com"
   s.extra_rdoc_files = [
