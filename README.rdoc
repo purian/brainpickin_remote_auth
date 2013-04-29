@@ -7,6 +7,11 @@ functionality (see https://my.brainpickin.com/api/remote_authentication).
 
 * Install:
   gem install brainpickin_remote_auth
+  
+  or add it to Gemfile
+
+  gem 'brainpickin_remote_auth'
+  
 
 * Setup:
 You will need to give the gem your token and authentication url,
