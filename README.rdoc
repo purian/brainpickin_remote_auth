@@ -1,7 +1,7 @@
 = brainpickin_remote_auth
 
 brainpickin_remote_auth is a simple gem providing help with brainpickin's Single Sign On
-functionality (see https://my.brainpickin.com/api/remote_authentication).
+functionality (see https://my.brainpickin.com/aremote_authentication/doc).
 
 == Installation and Setup
 
@@ -17,7 +17,7 @@ functionality (see https://my.brainpickin.com/api/remote_authentication).
 You will need to give the gem your token and authentication url,
 perhaps in an initializer:
   Brainpickin::RemoteAuth.token = 'OUR-SECRET-TOKEN'
-  Brainpickin::RemoteAuth.auth_url = 'https://yoursubdomain.brainpickin.com/access/remote/'
+  Brainpickin::RemoteAuth.auth_url = 'https://yoursubdomain.brainpickin.com/remote_authentication/remote_auth'
 
 
 == Usage

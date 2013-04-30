@@ -3,7 +3,7 @@ require 'active_support/core_ext/object' #gives us Hash.to_query
 
 ##
 # Provides a helper to use brainpickin's SSO/remote auth service.
-# see: https://my.brainpickin.com/api/remote_authentication
+# see: https://my.brainpickin.com/aremote_authentication/doc
 module Brainpickin
 
   ##
@@ -30,7 +30,7 @@ module Brainpickin
     ##
     # Takes a hash of parameters and generates the hashed auth
     # url. The hash must include the :name and :email for the user.
-    # See: https://my.brainpickin.com/api/remote_authentication for a list
+    # See: https://my.brainpickin.com/aremote_authentication/doc for a list
     # of all of the parameters.
     #
     # If the :timestamp is not provided, Time.now will be used. If an
